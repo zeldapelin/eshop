@@ -1,9 +1,9 @@
 .checkout {
     display: flex;
+    justify-content: space-around;
     padding: 20px;
     background-color: white;
-    height: 100px;
-    width: 100px;
+    /*box-sizing: border-box;*/
 }
 
 .checkout__ad {
@@ -18,7 +18,10 @@
 }
 
 .checkout__left {
-    display: inline-block;
-    flex-direction: column;
-    width: 100px;
+    flex: 0.8; /* takes 70% of the total width */
+    /*padding-right: 20px; !* some space between left and right *!*/
+}
+
+.checkout__right {
+    flex: 0.3; /* takes 30% of the total width */
 }

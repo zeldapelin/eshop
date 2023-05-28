@@ -1,5 +1,6 @@
 import React from "react";
 import "./Checkout.css";
+import "./CheckoutProduct.css";
 import Header from "./Header";
 import CheckoutProduct from "./CheckoutProduct";
 import Subtotal from "./Subtotal";
