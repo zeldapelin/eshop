@@ -3,22 +3,28 @@ import './Login.css'
 import { Link, useNavigate } from "react-router-dom";
 import { Storefront } from "@mui/icons-material";
 import { app } from "./Firebase";
+import {useStateValue} from "./StateProvider";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 const Login = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [state, dispatch] = useStateValue();
+
     const auth = getAuth(app);
+
 
     const signIn = e => {
         e.preventDefault();
 
         signInWithEmailAndPassword(auth, email, password)
-            .then(auth => navigate('/'))
-            .catch(error => alert(error.message))
-
-    }
+            .then(auth => {
+                console.log(auth.user.email);
+                navigate('/');
+            })
+            .catch(error => alert(error.message));
+    };
 
     const register = e => {
         e.preventDefault();

@@ -30,6 +30,7 @@ const reducer = (state, action) => {
                     `Cannot remove the ${action.title}`
                 )
             }
+
             return {
                 ...state,
                 basket: newBasket

@@ -3,10 +3,15 @@ import "./Header.css";
 import {Search, ShoppingBasket, Storefront} from "@mui/icons-material";
 import {Link} from "react-router-dom";
 import {useStateValue} from "./StateProvider";
+import {getAuth} from "firebase/auth";
+import { app } from "./Firebase";
 
 const Header = () => {
 
     const [{basket}, dispatch] = useStateValue();
+
+    const auth = getAuth(app);
+    const user = auth.currentUser ? auth.currentUser.email : null;
 
 
     return(
@@ -24,8 +29,11 @@ const Header = () => {
             <div className={"header__nav"}>
                 <Link to="/login">
                     <div className={"nav__item"}>
-                        <span className={"nav__itemLineOne"}>Hello Guest</span>
-                        <span className={"nav__itemLineTwo"}>Sign In</span>
+                        {user && <span className={"nav__itemLineOne"}>{user}</span>}
+                        {!user && <span className={"nav__itemLineOne"}>Hello Guest</span>}
+                    </div>
+                    <div>
+                        <span className={"nav__itemLineTwo"}>{user ? 'Sign Out' : 'Sign In'}</span>
                     </div>
                 </Link>
                 <div className={"nav__item"}>
